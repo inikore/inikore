@@ -1,0 +1,538 @@
+/* ==========================================
+   INIKORE — MINIMAL PROJECT PAGE
+========================================== */
+
+.project-page {
+    overflow-x: hidden;
+}
+
+.project-main {
+    position: relative;
+    z-index: 2;
+    width: min(1080px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 145px 0 80px;
+}
+
+
+/* ==========================================
+   TOP LINE
+========================================== */
+
+.project-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 90px;
+}
+
+.project-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #a49f96;
+    text-decoration: none;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.13em;
+    transition: color 0.3s ease;
+}
+
+.project-back:hover {
+    color: #f1eee8;
+}
+
+.project-back span {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.project-back:hover span {
+    transform: translateX(-4px);
+}
+
+.project-number {
+    color: #77716a;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.project-heading {
+    margin-bottom: 55px;
+}
+
+.project-category {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 23px;
+    color: #a49f96;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+}
+
+.project-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #c5a66b;
+    box-shadow: 0 0 10px rgba(197, 166, 107, 0.5);
+}
+
+.project-heading h1 {
+    margin: 0;
+    color: #f1eee8;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(85px, 13vw, 155px);
+    font-weight: 500;
+    line-height: 0.85;
+    letter-spacing: -0.075em;
+}
+
+.project-heading h1 span {
+    color: #a49f96;
+}
+
+.project-heading h1 sup {
+    position: relative;
+    top: -0.15em;
+    margin-left: 6px;
+    color: #c5a66b;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0;
+}
+
+.project-heading > p {
+    max-width: 430px;
+    margin: 27px 0 0;
+    color: #a49f96;
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.9;
+}
+
+
+/* ==========================================
+   IMAGE SYSTEM
+   Natural image dimensions are preserved.
+========================================== */
+
+.project-image {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #191716;
+    border: 1px solid rgba(241, 238, 232, 0.08);
+}
+
+.project-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.7s ease;
+}
+
+.project-image:hover img {
+    transform: scale(1.012);
+}
+
+.project-image figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    color: #898279;
+    background: rgba(16, 16, 16, 0.96);
+    border-top: 1px solid rgba(241, 238, 232, 0.07);
+    font-family: "Manrope", sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.14em;
+}
+
+.project-cover {
+    width: 100%;
+}
+
+
+/* ==========================================
+   PROJECT DETAILS
+========================================== */
+
+.project-details {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 25px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(241, 238, 232, 0.12);
+}
+
+.project-details > div {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.project-details > div > span {
+    color: #77716a;
+    font-family: "Manrope", sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.16em;
+}
+
+.project-details p {
+    margin: 0;
+    color: #d9d2c8;
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   SHARED SECTION LABEL
+========================================== */
+
+.project-section-label {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 48px;
+    color: #8f8880;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+}
+
+.project-section-label span:first-child {
+    color: #c5a66b;
+}
+
+.project-section-label span:last-child::before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 1px;
+    margin: 0 13px 3px 0;
+    background: rgba(197, 166, 107, 0.5);
+}
+
+
+/* ==========================================
+   ABOUT
+========================================== */
+
+.project-about {
+    padding: 140px 0 125px;
+}
+
+.project-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    align-items: start;
+    gap: 80px;
+}
+
+.project-about-grid h2 {
+    margin: 0;
+    color: #f1eee8;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(55px, 7vw, 82px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+}
+
+.project-about-grid h2 span {
+    color: #a49f96;
+    font-style: italic;
+}
+
+.project-about-copy {
+    padding-top: 8px;
+}
+
+.project-about-copy p {
+    margin: 0 0 20px;
+    color: #a49f96;
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 2.1;
+}
+
+.project-quote {
+    display: block;
+    margin-top: 30px;
+    padding-left: 15px;
+    color: #d9d2c8;
+    border-left: 1px solid #7c302c;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 23px;
+    font-style: italic;
+}
+
+
+/* ==========================================
+   GALLERY
+========================================== */
+
+.project-gallery-section {
+    padding-bottom: 125px;
+}
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 20px;
+}
+
+.gallery-image {
+    min-width: 0;
+}
+
+.gallery-wide {
+    grid-column: 1 / -1;
+}
+
+
+/* ==========================================
+   CLOSING
+========================================== */
+
+.project-closing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 105px 20px 70px;
+    text-align: center;
+    border-top: 1px solid rgba(241, 238, 232, 0.12);
+}
+
+.project-closing-label {
+    margin-bottom: 25px;
+    color: #c5a66b;
+    font-family: "Manrope", sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+}
+
+.project-closing h2 {
+    margin: 0;
+    color: #f1eee8;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(53px, 8vw, 88px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+}
+
+.project-closing h2 span {
+    color: #a49f96;
+    font-style: italic;
+}
+
+.project-closing > p {
+    max-width: 380px;
+    margin: 25px auto 0;
+    color: #969087;
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+.project-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 32px;
+    padding-bottom: 8px;
+    color: #e7e0d6;
+    border-bottom: 1px solid rgba(197, 166, 107, 0.5);
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: gap 0.3s ease, color 0.3s ease;
+}
+
+.project-back-link:hover {
+    gap: 20px;
+    color: #c5a66b;
+}
+
+
+/* ==========================================
+   REVEAL
+========================================== */
+
+.project-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.project-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 850px) {
+
+    .project-main {
+        width: calc(100% - 48px);
+        padding-top: 130px;
+    }
+
+    .project-about-grid {
+        gap: 40px;
+    }
+
+    .project-about {
+        padding: 110px 0;
+    }
+
+    .project-gallery-section {
+        padding-bottom: 100px;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .project-main {
+        width: calc(100% - 36px);
+        padding-top: 115px;
+        padding-bottom: 50px;
+    }
+
+    .project-topline {
+        margin-bottom: 65px;
+    }
+
+    .project-number {
+        font-size: 7px;
+    }
+
+    .project-heading {
+        margin-bottom: 40px;
+    }
+
+    .project-heading h1 {
+        font-size: clamp(65px, 17vw, 100px);
+    }
+
+    .project-heading h1 sup {
+        font-size: 10px;
+    }
+
+    .project-heading > p {
+        max-width: 310px;
+        font-size: 11px;
+    }
+
+    .project-image figcaption {
+        padding: 11px 12px;
+        font-size: 7px;
+    }
+
+    .project-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 23px 15px;
+        padding: 25px 0;
+    }
+
+    .project-about {
+        padding: 95px 0;
+    }
+
+    .project-section-label {
+        margin-bottom: 35px;
+    }
+
+    .project-about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .project-about-grid h2 {
+        font-size: clamp(53px, 14vw, 72px);
+    }
+
+    .project-about-copy p {
+        font-size: 10px;
+    }
+
+    .project-quote {
+        font-size: 21px;
+    }
+
+    .project-gallery-section {
+        padding-bottom: 90px;
+    }
+
+    .project-gallery {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .gallery-wide {
+        grid-column: auto;
+    }
+
+    .project-closing {
+        padding: 85px 8px 50px;
+    }
+
+    .project-closing h2 {
+        font-size: clamp(51px, 13vw, 72px);
+    }
+
+}
+
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .project-page *,
+    .project-page *::before,
+    .project-page *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .project-reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+}
