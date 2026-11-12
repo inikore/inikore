@@ -85,8 +85,6 @@ body {
     to { transform: translate(18%, 12%) scale(1.15); }
 }
 
-/* Floating glow orbs */
-
 .orb {
     position: absolute;
     border-radius: 50%;
@@ -127,8 +125,6 @@ body {
     to { transform: translate3d(35px, -25px, 0) scale(1.12); }
 }
 
-/* Animated wordmark */
-
 .wordmark {
     position: absolute;
     top: 49%;
@@ -159,8 +155,6 @@ body {
         opacity: .8;
     }
 }
-
-/* Secondary logo outlines */
 
 .outline-logo {
     position: absolute;
@@ -198,8 +192,6 @@ body {
     }
 }
 
-/* Grain */
-
 .grain {
     position: absolute;
     inset: 0;
@@ -223,8 +215,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-/* Top navigation */
 
 .topbar {
     height: 76px;
@@ -272,8 +262,6 @@ body {
     background: #b4d3a2;
     box-shadow: 0 0 12px #a7d38b;
 }
-
-/* Main content */
 
 .main-content {
     flex: 1;
@@ -648,6 +636,39 @@ body {
     outline-offset: 4px;
 }
 
+/* Forgot password */
+
+.forgot-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.forgot-link {
+    padding: 3px 0;
+    border: 0;
+    background: transparent;
+
+    color: var(--champagne);
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: .4px;
+
+    cursor: pointer;
+    transition: color .25s ease, opacity .25s ease;
+}
+
+.forgot-link:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.forgot-link:disabled {
+    opacity: .5;
+    cursor: wait;
+}
+
 /* Status message */
 
 .message {
@@ -888,8 +909,6 @@ body {
 
 <body>
 
-<!-- ANIMATED BACKGROUND -->
-
 <div class="background">
     <div class="light-beam"></div>
     <div class="light-beam two"></div>
@@ -906,8 +925,6 @@ body {
     <div class="grain"></div>
 </div>
 
-<!-- MAIN SCREEN -->
-
 <div class="screen">
 
     <header class="topbar">
@@ -922,8 +939,6 @@ body {
     </header>
 
     <main class="main-content">
-
-        <!-- EDITORIAL BRANDING -->
 
         <section class="editorial">
 
@@ -950,8 +965,6 @@ body {
             </div>
 
         </section>
-
-        <!-- LOGIN -->
 
         <section class="login-area">
 
@@ -1004,6 +1017,16 @@ body {
                         ENTER CONTROL CENTRE &nbsp; →
                     </button>
 
+                    <div class="forgot-row">
+                        <button
+                            type="button"
+                            class="forgot-link"
+                            id="forgotPasswordButton"
+                        >
+                            Forgot Password?
+                        </button>
+                    </div>
+
                     <div
                         class="message"
                         id="loginMessage"
@@ -1031,37 +1054,116 @@ body {
 
 </div>
 
-<!-- =================================
-     SUPABASE LIBRARY
-================================= -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<!-- =================================
-     INIKORE SUPABASE CONFIGURATION
-================================= -->
-
 <script src="js/supabase-config.js"></script>
-
-<!-- =================================
-     INIKORE ADMIN AUTHENTICATION
-================================= -->
 
 <script>
 const loginForm = document.getElementById("loginForm");
 const loginMessage = document.getElementById("loginMessage");
-const loginButton = loginForm.querySelector("button");
+const loginButton = loginForm.querySelector(".glass-button");
+const forgotPasswordButton = document.getElementById("forgotPasswordButton");
+const emailInput = document.getElementById("email");
 
 function showLoginMessage(message, type = "error") {
     loginMessage.textContent = message;
     loginMessage.className = "message show " + type;
 }
 
+// =================================
+// FORGOT PASSWORD
+// =================================
+
+forgotPasswordButton.addEventListener("click", async function() {
+
+    const email = emailInput.value.trim();
+
+    // Require an email address first.
+    if (!email) {
+        emailInput.focus();
+
+        showLoginMessage(
+            "Please enter your admin email address first."
+        );
+
+        return;
+    }
+
+    if (!emailInput.checkValidity()) {
+        emailInput.focus();
+
+        showLoginMessage(
+            "Please enter a valid email address."
+        );
+
+        return;
+    }
+
+    if (!window.inikoreSupabase) {
+        showLoginMessage(
+            "Supabase connection is unavailable. Please refresh the page."
+        );
+
+        return;
+    }
+
+    forgotPasswordButton.disabled = true;
+    forgotPasswordButton.textContent = "SENDING RESET EMAIL...";
+
+    loginButton.disabled = true;
+    loginMessage.className = "message";
+
+    try {
+
+        const recoveryUrl =
+            "https://inikore.github.io/inikore/reset-password.html";
+
+        const { error } =
+            await window.inikoreSupabase.auth.resetPasswordForEmail(
+                email,
+                {
+                    redirectTo: recoveryUrl
+                }
+            );
+
+        if (error) {
+            throw error;
+        }
+
+        showLoginMessage(
+            "If an account exists for this email, a password reset link will be sent. Please check your inbox and spam folder.",
+            "success"
+        );
+
+        forgotPasswordButton.textContent = "EMAIL REQUESTED";
+
+    } catch (error) {
+
+        console.error("INIKORE password reset error:", error);
+
+        showLoginMessage(
+            error.message || "Unable to send the reset email. Please try again."
+        );
+
+        forgotPasswordButton.disabled = false;
+        forgotPasswordButton.textContent = "Forgot Password?";
+
+    } finally {
+
+        loginButton.disabled = false;
+
+    }
+
+});
+
+// =================================
+// ADMIN LOGIN
+// =================================
+
 loginForm.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
+    const email = emailInput.value.trim();
     const password = document.getElementById("password").value;
 
     if (!window.inikoreSupabase) {
