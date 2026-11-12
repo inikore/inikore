@@ -77,7 +77,7 @@
       return;
     }
 
-    const recoveryUrl = `${window.location.origin}${window.location.pathname}?mode=recovery`;
+    const recoveryUrl = 'https://inikore.github.io/inikore/reset-password.html';
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: recoveryUrl
     });
